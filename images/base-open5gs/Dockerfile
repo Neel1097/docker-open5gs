@@ -1,4 +1,4 @@
-# syntax=docker/dockerfile:1
+
 
 # global build-time arguments for FROM statements
 # (https://docs.docker.com/engine/reference/builder/#understand-how-arg-and-from-interact)

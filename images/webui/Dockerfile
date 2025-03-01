@@ -1,4 +1,4 @@
-# syntax=docker/dockerfile:1
+
 
 # global build-time arguments for FROM statements
 ARG NODE_VERSION="20"

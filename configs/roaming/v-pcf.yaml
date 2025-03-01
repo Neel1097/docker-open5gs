@@ -7,14 +7,14 @@ global:
 pcf:
   sbi:
     server:
-      - address: pcf.5gc.mnc070.mcc999.3gppnetwork.org
+      - address: pcf.5gc.mnc002.mcc262.3gppnetwork.org
         port: 80
     client:
       nrf:
-        - uri: http://nrf.5gc.mnc070.mcc999.3gppnetwork.org:80
+        - uri: http://nrf.5gc.mnc002.mcc262.3gppnetwork.org:80
   policy:
     - plmn_id:
-        mcc: 001
+        mcc: 262
         mnc: 01
       slice:
         - sst: 1

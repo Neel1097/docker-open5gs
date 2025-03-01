@@ -25,7 +25,7 @@ services:
     networks:
       open5gs:
         aliases:
-          - nrf.5gc.mnc001.mcc001.3gppnetwork.org
+          - nrf.5gc.mnc001.mcc262.3gppnetwork.org
     configs:
       - source: h-nrf_config
         target: /etc/open5gs/custom/nrf.yaml
@@ -42,7 +42,7 @@ services:
     networks:
       open5gs:
         aliases:
-          - ausf.5gc.mnc001.mcc001.3gppnetwork.org
+          - ausf.5gc.mnc001.mcc262.3gppnetwork.org
     configs:
       - source: h-ausf_config
         target: /etc/open5gs/custom/ausf.yaml
@@ -61,7 +61,7 @@ services:
     networks:
       open5gs:
         aliases:
-          - udm.5gc.mnc001.mcc001.3gppnetwork.org
+          - udm.5gc.mnc001.mcc262.3gppnetwork.org
     configs:
       - source: h-udm_config
         target: /etc/open5gs/custom/udm.yaml
@@ -81,7 +81,7 @@ services:
     networks:
       open5gs:
         aliases:
-          - udr.5gc.mnc001.mcc001.3gppnetwork.org
+          - udr.5gc.mnc001.mcc262.3gppnetwork.org
     configs:
       - source: h-udr_config
         target: /etc/open5gs/custom/udr.yaml
@@ -102,7 +102,7 @@ services:
     networks:
       open5gs:
         aliases:
-          - sepp.5gc.mnc001.mcc001.3gppnetwork.org
+          - sepp.5gc.mnc001.mcc262.3gppnetwork.org
     configs:
       - source: h-sepp_config
         target: /etc/open5gs/custom/sepp.yaml
@@ -121,7 +121,7 @@ services:
     networks:
       open5gs:
         aliases:
-          - nrf.5gc.mnc070.mcc999.3gppnetwork.org
+          - nrf.5gc.mnc002.mcc262.3gppnetwork.org
     configs:
       - source: v-nrf_config
         target: /etc/open5gs/custom/nrf.yaml
@@ -138,7 +138,7 @@ services:
     networks:
       open5gs:
         aliases:
-          - ausf.5gc.mnc070.mcc999.3gppnetwork.org
+          - ausf.5gc.mnc002.mcc262.3gppnetwork.org
     configs:
       - source: v-ausf_config
         target: /etc/open5gs/custom/ausf.yaml
@@ -157,7 +157,7 @@ services:
     networks:
       open5gs:
         aliases:
-          - nssf.5gc.mnc070.mcc999.3gppnetwork.org
+          - nssf.5gc.mnc002.mcc262.3gppnetwork.org
     configs:
       - source: v-nssf_config
         target: /etc/open5gs/custom/nssf.yaml
@@ -176,7 +176,7 @@ services:
     networks:
       open5gs:
         aliases:
-          - bsf.5gc.mnc070.mcc999.3gppnetwork.org
+          - bsf.5gc.mnc002.mcc262.3gppnetwork.org
     configs:
       - source: v-bsf_config
         target: /etc/open5gs/custom/bsf.yaml
@@ -196,7 +196,7 @@ services:
     networks:
       open5gs:
         aliases:
-          - pcf.5gc.mnc070.mcc999.3gppnetwork.org
+          - pcf.5gc.mnc002.mcc262.3gppnetwork.org
     configs:
       - source: v-pcf_config
         target: /etc/open5gs/custom/pcf.yaml
@@ -215,10 +215,29 @@ services:
     networks:
       open5gs:
         aliases:
-          - amf.5gc.mnc070.mcc999.3gppnetwork.org
+          - amf.5gc.mnc002.mcc262.3gppnetwork.org
     configs:
       - source: v-amf_config
         target: /etc/open5gs/custom/amf.yaml
+    depends_on:
+      - v-nrf
+
+  v-amf1:
+    container_name: v-amf1
+    image: "amf:${OPEN5GS_VERSION}"
+    build:
+      context: ../../images/amf
+      args:
+        - OPEN5GS_VERSION=${OPEN5GS_VERSION}
+        - UBUNTU_VERSION=${UBUNTU_VERSION}
+    command: "-c /etc/open5gs/custom/amf1.yaml"
+    networks:
+      open5gs:
+        aliases:
+          - amf1.5gc.mnc002.mcc262.3gppnetwork.org
+    configs:
+      - source: v-amf1_config
+        target: /etc/open5gs/custom/amf1.yaml
     depends_on:
       - v-nrf
 
@@ -234,7 +253,7 @@ services:
     networks:
       open5gs:
         aliases:
-          - smf.5gc.mnc070.mcc999.3gppnetwork.org
+          - smf.5gc.mnc002.mcc262.3gppnetwork.org
     configs:
       - source: v-smf_config
         target: /etc/open5gs/custom/smf.yaml
@@ -254,7 +273,7 @@ services:
     networks:
       open5gs:
         aliases:
-          - upf.5gc.mnc070.mcc999.3gppnetwork.org
+          - upf.5gc.mnc002.mcc262.3gppnetwork.org
     configs:
       - source: v-upf_config
         target: /etc/open5gs/custom/upf.yaml
@@ -275,12 +294,33 @@ services:
     networks:
       open5gs:
         aliases:
-          - sepp.5gc.mnc070.mcc999.3gppnetwork.org
+          - sepp.5gc.mnc002.mcc262.3gppnetwork.org
     configs:
       - source: v-sepp_config
         target: /etc/open5gs/custom/sepp.yaml
     depends_on:
       - v-nrf
+
+
+  webui:
+    container_name: webui
+    image: "open5gs/webui:${OPEN5GS_VERSION}"
+    build:
+      context: ../../images/webui
+      args:
+        - OPEN5GS_VERSION=${OPEN5GS_VERSION}
+        - UBUNTU_VERSION=${UBUNTU_VERSION}
+    networks:
+      open5gs:
+        aliases:
+          - webui.open5gs.org
+    environment:
+      - DB_URI=mongodb://db:27017/open5gs
+    ports:
+      - "0.0.0.0:9999:9999/tcp"
+    depends_on:
+      - db
+
 
   packetrusher:
     container_name: packetrusher
@@ -290,6 +330,7 @@ services:
       open5gs:
         aliases:
           - gnb.packetrusher.org
+          - gnb1.packetrusher.org
     configs:
       - source: packetrusher_config
         target: /PacketRusher/config/packetrusher.yaml
@@ -342,6 +383,8 @@ configs:
     file: ../../configs/roaming/v-pcf.yaml
   v-amf_config:
     file: ../../configs/roaming/v-amf.yaml
+  v-amf1_config:
+    file: ../../configs/roaming/v-amf1.yaml
   v-smf_config:
     file: ../../configs/roaming/v-smf.yaml
   v-upf_config:

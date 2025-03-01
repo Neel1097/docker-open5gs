@@ -7,8 +7,8 @@ global:
 udm:
   sbi:
     server:
-      - address: udm.5gc.mnc001.mcc001.3gppnetwork.org
+      - address: udm.5gc.mnc001.mcc262.3gppnetwork.org
         port: 80
     client:
       nrf:
-        - uri: http://nrf.5gc.mnc001.mcc001.3gppnetwork.org:80
+        - uri: http://nrf.5gc.mnc001.mcc262.3gppnetwork.org:80

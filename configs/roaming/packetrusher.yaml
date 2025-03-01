@@ -6,10 +6,26 @@ gnodeb:
     ip: gnb.packetrusher.org
     port: 2152
   plmnlist:
-    mcc: "999"
-    mnc: "70"
+    mcc: "262"
+    mnc: "02"
     tac: "000001"
     gnbid: "000008"
+  slicesupportlist:
+    sst: "01"
+    sd: "000001"
+
+gnodeb:
+  controlif:
+    ip: gnb1.packetrusher.org
+    port: 38412
+  dataif:
+    ip: gnb1.packetrusher.org
+    port: 2152
+  plmnlist:
+    mcc: "262"
+    mnc: "02"
+    tac: "000002"
+    gnbid: "000009"
   slicesupportlist:
     sst: "01"
     sd: "000001"
@@ -23,7 +39,32 @@ ue:
   dnn: "internet"
   routingindicator: "0000"
   hplmn:
-    mcc: "001"
+    mcc: "262"
+    mnc: "01"
+  snssai:
+    sst: 01
+    sd: "000001"
+  integrity:
+    nia0: false
+    nia1: false
+    nia2: true
+    nia3: false
+  ciphering:
+    nea0: true
+    nea1: false
+    nea2: true
+    nea3: false
+
+ue:
+  msin: "1234567890"
+  key: "00000000000000000000000000000000"
+  opc: "00000000000000000000000000000000"
+  amf: "8000"
+  sqn: "00000000"
+  dnn: "internet"
+  routingindicator: "0000"
+  hplmn:
+    mcc: "262"
     mnc: "01"
   snssai:
     sst: 01
@@ -40,7 +81,9 @@ ue:
     nea3: false
 
 amfif:
-  - ip: amf.5gc.mnc070.mcc999.3gppnetwork.org
+  - ip: amf.5gc.mnc002.mcc262.3gppnetwork.org
+    port: 38412
+  - ip: amf1.5gc.mnc002.mcc262.3gppnetwork.org
     port: 38412
 logs:
   level: 4

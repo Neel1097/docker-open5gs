@@ -7,9 +7,9 @@ global:
 nrf:
   serving:
     - plmn_id:
-        mcc: 001
+        mcc: 262
         mnc: 01
   sbi:
     server:
-      - address: nrf.5gc.mnc001.mcc001.3gppnetwork.org
+      - address: nrf.5gc.mnc001.mcc262.3gppnetwork.org
         port: 80

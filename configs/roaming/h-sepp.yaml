@@ -7,15 +7,15 @@ global:
 sepp:
   sbi:
     server:
-      - address: sepp.5gc.mnc001.mcc001.3gppnetwork.org
+      - address: sepp.5gc.mnc001.mcc262.3gppnetwork.org
         port: 80
     client:
       nrf:
-        - uri: http://nrf.5gc.mnc001.mcc001.3gppnetwork.org:80
+        - uri: http://nrf.5gc.mnc001.mcc262.3gppnetwork.org:80
   n32:
     server:
-      - sender: sepp.5gc.mnc001.mcc001.3gppnetwork.org
+      - sender: sepp.5gc.mnc001.mcc262.3gppnetwork.org
     client:
       sepp:
-        - receiver: sepp.5gc.mnc070.mcc999.3gppnetwork.org
-          uri: http://sepp.5gc.mnc070.mcc999.3gppnetwork.org:80
+        - receiver: sepp.5gc.mnc002.mcc262.3gppnetwork.org
+          uri: http://sepp.5gc.mnc002.mcc262.3gppnetwork.org:80

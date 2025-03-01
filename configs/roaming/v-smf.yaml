@@ -7,20 +7,20 @@ global:
 smf:
   sbi:
     server:
-      - address: smf.5gc.mnc070.mcc999.3gppnetwork.org
+      - address: smf.5gc.mnc002.mcc262.3gppnetwork.org
         port: 80
     client:
       nrf:
-        - uri: http://nrf.5gc.mnc070.mcc999.3gppnetwork.org:80
+        - uri: http://nrf.5gc.mnc002.mcc262.3gppnetwork.org:80
   pfcp:
     server:
-      - address: smf.5gc.mnc070.mcc999.3gppnetwork.org
+      - address: smf.5gc.mnc002.mcc262.3gppnetwork.org
     client:
       upf:
-        - address: upf.5gc.mnc070.mcc999.3gppnetwork.org
+        - address: upf.5gc.mnc002.mcc262.3gppnetwork.org
   gtpu:
     server:
-      - address: smf.5gc.mnc070.mcc999.3gppnetwork.org
+      - address: smf.5gc.mnc002.mcc262.3gppnetwork.org
   session:
     - subnet: 10.45.0.0/16
       gateway: 10.45.0.1
